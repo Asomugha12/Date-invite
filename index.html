@@ -95,6 +95,7 @@
         let selectedTime = "";
 
         function startQuiz() {
+    document.querySelector('.hidden-button').style.display = 'none';
             console.log("Quiz started");
             document.querySelector("h1").style.display = "none";
             document.querySelector("button").style.display = "none";
@@ -119,7 +120,7 @@
             console.log("User selected time: ", choice);
             selectedTime = choice;
             document.getElementById("q3").style.display = "none";
-            let resultText = `Great! Here’s our plan:\n- Date Type: ${selectedDateType}\n- Snacks: ${selectedSnack}\n- Time: ${selectedTime}`;
+            let resultText = `Great! Here’s our plan:\n- Date Type: ${selectedDateType}\n- Snacks: ${selectedSnack}\n- Time I'll Come over: ${selectedTime}`;
             
             document.getElementById("result").innerText = resultText;
             document.getElementById("result").style.display = "block";
