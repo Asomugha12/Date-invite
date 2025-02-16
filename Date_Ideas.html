@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Our Date</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+        h1, p {
+            font-size: 3em;
+        }
+        .question {
+            display: none;
+            margin-top: 30px;
+        }
+        button {
+            font-size: 2em;
+            padding: 20px 40px;
+            margin: 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden-button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            background-color: rgba(255, 0, 0, 0.2); /* Very light red */
+            color: #800000;
+            border-radius: 10px;
+            cursor: default;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            opacity: 0.5;
+        }
+        .hidden-button:hover {
+            opacity: 0.7;
+        }
+        .result {
+            display: none;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hey honey, do you want to go out?</h1>
+    <button onclick="startQuiz()">Yes!</button>
+    <button class="hidden-button">No</button>
+    
+    <div class="question" id="q1">
+        <p>What type of date?</p>
+        <button onclick="nextQuestion('Paint n Sip')">Paint n Sip</button>
+        <button onclick="nextQuestion('Animal Sanctuary')">Animal Sanctuary</button>
+        <button onclick="nextQuestion('Hike')">Hike</button>
+    </div>
+    
+    <div class="question" id="q2">
+        <p>What snacks should I bring over?</p>
+        <button onclick="nextQuestion2('Chicken Skewers')">Chicken Skewers</button>
+        <button onclick="nextQuestion2('Sweet Treats')">Sweet Treats</button>
+        <button onclick="nextQuestion2('Fruits')">Fruits</button>
+        <button onclick="nextQuestion2('All of them')">All of them</button>
+    </div>
+    
+    <div class="question" id="q3">
+        <p>When do you want me to come over?</p>
+        <button onclick="showResult('Thursday (WFH Friday)')">Thursday (WFH Friday)</button>
+        <button onclick="showResult('Friday (After Work)')">Friday (After Work)</button>
+    </div>
+    
+    <p class="result" id="result"></p>
+    
+    <script>
+        let selectedDateType = "";
+        let selectedSnack = "";
+        let selectedTime = "";
+
+        function startQuiz() {
+            console.log("Quiz started");
+            document.querySelector("h1").style.display = "none";
+            document.querySelector("button").style.display = "none";
+            document.getElementById("q1").style.display = "block";
+        }
+        
+        function nextQuestion(choice) {
+            console.log("User selected date type: ", choice);
+            selectedDateType = choice;
+            document.getElementById("q1").style.display = "none";
+            document.getElementById("q2").style.display = "block";
+        }
+        
+        function nextQuestion2(choice) {
+            console.log("User selected snacks: ", choice);
+            selectedSnack = choice;
+            document.getElementById("q2").style.display = "none";
+            document.getElementById("q3").style.display = "block";
+        }
+        
+        function showResult(choice) {
+            console.log("User selected time: ", choice);
+            selectedTime = choice;
+            document.getElementById("q3").style.display = "none";
+            let resultText = `Great! Here’s our plan:\n- Date Type: ${selectedDateType}\n- Snacks: ${selectedSnack}\n- Time: ${selectedTime}`;
+            
+            document.getElementById("result").innerText = resultText;
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+</body>
+</html>
